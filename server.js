@@ -2,15 +2,16 @@ const path = require('path');
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3000; // Utilise le port attribué par Vercel ou 3000 en local
+
 
 
 
 // Configuration de CORS
 app.use(cors({
-  origin: 'front-books-aline.vercel.app', 
-  methods: 'GET, POST, OPTIONS',
-  allowedHeaders: 'Content-Type, Authorization'
+  origin: 'https://front-books-aline.vercel.app', // L'URL exacte de ton frontend
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true // Si tu as besoin d'envoyer des cookies ou des sessions
 }));
 
 
