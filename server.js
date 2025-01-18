@@ -4,19 +4,17 @@ const express = require('express');
 const app = express();
 const port = 3000; // Utilise le port attribué par Vercel ou 3000 en local
 
+// Middleware pour ajouter les en-têtes CORS manuellement
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://front-books-aline.vercel.app'); // Remplace par l'URL de ton frontend
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Méthodes autorisées
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // En-têtes autorisés
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // Pour les cookies ou les sessions
+  res.setHeader('Cache-Control', 'no-store'); // Désactiver le cache
+  next();
+});
 
-
-
-// Configuration de CORS
-app.use(cors({
-  origin: 'https://front-books-aline.vercel.app',
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-  credentials: true // Si tu as besoin d'envoyer des cookies ou des sessions
-}));
-
-
-// Servir les fichiers statiques (par exemple pour votre HTML)
+// Servir les fichiers statiques (images)
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 // Données des livres (votre JSON ici)
@@ -114,8 +112,7 @@ const books = [
 ];
 
 
-
-// Route pour récupérer la liste des livres
+// Route principale pour récupérer la liste des livres
 app.get('/', (req, res) => {
   res.json(books);
 });
