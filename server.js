@@ -1,6 +1,21 @@
+const path = require('path');
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const port = 3000;
+
+
+
+// Configuration de CORS
+app.use(cors({
+  origin: 'front-books-aline.vercel.app', 
+  methods: 'GET, POST, OPTIONS',
+  allowedHeaders: 'Content-Type, Authorization'
+}));
+
+
+// Servir les fichiers statiques (par exemple pour votre HTML)
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 // Données des livres (votre JSON ici)
 const books = [
@@ -8,7 +23,7 @@ const books = [
     "id": 12345,
     "title": "Le Maître et Marguerite",
     "slug": "le-maitre-et-marguerite",
-    "thumbnail": "/images/maitre.jpg",
+    "thumbnail": "maitre.jpg",
     "author": "Mikhaïl Boulgakov",
     "difficulty": "Difficile",
     "description": "Un roman qui mélange fantastique, réalisme et satire. L'histoire explore la présence du Diable dans la Moscou stalinienne, où des événements surnaturels bouleversent la ville. Le Maître et Marguerite, deux personnages principaux, symbolisent l'amour, la rédemption et la lutte contre le totalitarisme.",
@@ -23,7 +38,7 @@ const books = [
     "id": 8965,
     "title": "1984",
     "slug": "1984",
-    "thumbnail": "/images/1984.jpg",
+    "thumbnail": "1984.jpg",
     "author": "George Orwell",
     "difficulty": "Moyen",
     "description": "Un roman dystopique où l'État totalitaire surveille et manipule ses citoyens. Winston Smith, le personnage principal, se rebelle contre un régime oppressif, mais découvre que la lutte pour la liberté est bien plus compliquée qu'il ne l'imaginait.",
@@ -38,7 +53,7 @@ const books = [
     "id": 7689,
     "title": "Le Meilleur des Mondes",
     "slug": "le-meilleur-des-mondes",
-    "thumbnail": "/images/monde.jpg",
+    "thumbnail": "monde.jpg",
     "author": "Aldous Huxley",
     "difficulty": "Moyen",
     "description": "Un roman dystopique visionnaire qui décrit un futur où la société est parfaitement régulée, mais au prix de la liberté individuelle et de l'émotion. La pensée critique est éliminée au profit de la consommation de masse et du confort matériel.",
@@ -53,7 +68,7 @@ const books = [
     "id": 8956,
     "title": "Hamlet",
     "slug": "hamlet",
-    "thumbnail": "/images/hamlet.jpg",
+    "thumbnail": "hamlet.jpg",
     "author": "William Shakespeare",
     "difficulty": "Difficile",
     "description": "La célèbre tragédie de Shakespeare où le prince Hamlet cherche à venger la mort de son père, tué par son oncle. Un chef-d'œuvre sur la vengeance, la folie et les dilemmes moraux.",
@@ -68,7 +83,7 @@ const books = [
     "id": 7123,
     "title": "Silo",
     "slug": "silo",
-    "thumbnail": "/images/silo.jpg",
+    "thumbnail": "silo.jpg",
     "author": "Hugh Howey",
     "difficulty": "Moyen",
     "description": "Dans un futur post-apocalyptique, les derniers survivants de l'humanité vivent dans un silo souterrain gigantesque. Le roman suit l’histoire de personnages qui remettent en question la vérité sur leur monde enfermé.",
@@ -83,7 +98,7 @@ const books = [
     "id": 3412,
     "title": "Les Robots",
     "slug": "les-robots",
-    "thumbnail": "/images/robots.jpg",
+    "thumbnail": "robots.jpg",
     "author": "Isaac Asimov",
     "difficulty": "Facile",
     "description": "Une série de nouvelles qui explore les lois de la robotique et les relations entre les humains et les intelligences artificielles. Asimov pose des questions éthiques sur la technologie et la place des machines dans la société.",
@@ -96,8 +111,7 @@ const books = [
   }
 ];
 
-// Servir les fichiers statiques (par exemple pour votre HTML)
-app.use(express.static('public'));
+
 
 // Route pour récupérer la liste des livres
 app.get('/', (req, res) => {
@@ -106,5 +120,5 @@ app.get('/', (req, res) => {
 
 // Démarrer le serveur
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on https://api-books-mu.vercel.app`);
 });
