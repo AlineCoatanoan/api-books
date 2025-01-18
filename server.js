@@ -9,7 +9,7 @@ const port = 3000; // Utilise le port attribué par Vercel ou 3000 en local
 
 // Configuration de CORS
 app.use(cors({
-  origin: 'https://front-books-aline.vercel.app', // L'URL exacte de ton frontend
+  origin: '*',
   methods: 'GET,POST,PUT,DELETE',
   credentials: true // Si tu as besoin d'envoyer des cookies ou des sessions
 }));
