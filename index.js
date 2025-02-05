@@ -2,18 +2,24 @@ const express = require('express');
 const cors = require('cors');  // Ajoute cette ligne pour importer cors
 const app = express();
 
+// Configuration CORS
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://localhost:5173', 'https://front-books-azure.vercel.app'],
+  origin: function(origin, callback) {
+    const allowedOrigins = ['http://localhost:5173', 'https://localhost:5173', 'https://front-books-azure.vercel.app'];
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origin not allowed by CORS'));
+    }
+  },
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Content-Type, Authorization',
   credentials: true,  // Important pour les cookies et les credentials
 };
 
-
+// Appliquer CORS avec les options
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));  // Répond aux requêtes OPTIONS
-
-
+app.options('*', cors(corsOptions));  // Répond aux pré-requêtes
 
 // Données des livres (votre JSON ici)
 const books = [
