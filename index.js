@@ -3,11 +3,12 @@ const cors = require('cors');  // Ajoute cette ligne pour importer cors
 const app = express();
 
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://localhost:5173', 'https://front-books-azure.vercel.app/'],
+  origin: ['http://localhost:5173', 'https://localhost:5173', 'https://front-books-azure.vercel.app'],
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Content-Type, Authorization',
   credentials: true,  // Important pour les cookies et les credentials
 };
+
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));  // Répond aux requêtes OPTIONS
