@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+import cors from 'cors';
+
+const corsOptions = {
+  origin: 'https://front-books-azure.vercel.app', // L'URL de ton front
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Méthodes autorisées
+  credentials: true,  // Si tu veux que les cookies ou les headers d'authentification soient envoyés
+};
+
+app.use(cors(corsOptions));
 
 // Données des livres (votre JSON ici)
 const books = [
