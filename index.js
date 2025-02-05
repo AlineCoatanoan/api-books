@@ -1,31 +1,6 @@
-require('dotenv').config();  // Charge les variables d'environnement
-
 const express = require('express');
-const cors = require('cors');
 const app = express();
-
-// CORS options avec l'URL de production dans le fichier .env
-const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'http://localhost:5173', // Local dev
-      'https://localhost:5173', // Local dev en HTTPS
-      'https://front-books-azure.vercel.app', // Ton domaine de production sur Vercel
-      process.env.VERCEL_URL, // Utilise la variable d'environnement pour la production
-    ];
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origin not allowed by CORS'));
-    }
-  },
-  methods: 'GET, POST, PUT, DELETE',
-  allowedHeaders: 'Content-Type, Authorization',
-  credentials: true,  // Important pour les cookies et les credentials
-};
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));  
+const port = process.env.PORT || 3000;
 
 // Données des livres (votre JSON ici)
 const books = [
@@ -121,15 +96,13 @@ const books = [
   }
 ];
 
-// Route principale pour récupérer la liste des livres
+
+// Route pour obtenir tous les livres
 app.get('/', (req, res) => {
   res.json(books);
 });
 
-// Démarrer le serveur
-const port = process.env.PORT || 3000;
+// Démarre le serveur
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
-
-module.exports = app;
