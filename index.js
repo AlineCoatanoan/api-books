@@ -3,8 +3,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 import cors from 'cors';
 
-app.use(express.static('public'));
-
 const corsOptions = {
   origin: 'https://front-books-azure.vercel.app', // L'URL de ton front
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Méthodes autorisées
@@ -19,7 +17,7 @@ const books = [
     "id": 12345,
     "title": "Le Maître et Marguerite",
     "slug": "le-maitre-et-marguerite",
-    "image": "/images/maitre.jpg",
+    "image": "https://images.epagine.fr/136/9782221221136_1_75.jpg",
     "author": "Mikhaïl Boulgakov",
     "difficulty": "Difficile",
     "description": "Un roman qui mélange fantastique, réalisme et satire. L'histoire explore la présence du Diable dans la Moscou stalinienne, où des événements surnaturels bouleversent la ville. Le Maître et Marguerite, deux personnages principaux, symbolisent l'amour, la rédemption et la lutte contre le totalitarisme.",
