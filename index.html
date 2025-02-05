@@ -9,15 +9,24 @@
   <h1>Liste des livres</h1>
   <ul id="books-list"></ul>
 
-
   <script>
-    fetch('https://api-books-alpha.vercel.app/')
+    fetch('https://api-books-alpha.vercel.app/') 
       .then(response => response.json())
       .then(books => {
         const booksList = document.getElementById('books-list');
         books.forEach(book => {
           const li = document.createElement('li');
           li.textContent = book.title;
+
+          // Créer l'élément image
+          const img = document.createElement('img');
+          img.src = book.thumbnail;  // Utilise la clé correcte (imageUrl dans ton API)
+          img.alt = book.title;
+
+          // Ajouter l'image à la liste
+          li.appendChild(img);
+
+          // Ajouter l'élément <li> à la liste des livres
           booksList.appendChild(li);
         });
       })
