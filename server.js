@@ -2,8 +2,6 @@ const path = require('path');
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
- // Utilise le port attribué par Vercel ou 3000 en local
 
 // Middleware pour ajouter les en-têtes CORS manuellement
 app.use((req, res, next) => {
@@ -119,6 +117,4 @@ app.get('/', (req, res) => {
 });
 
 // Démarrer le serveur
-app.listen(port, () => {
-  console.log(`Server is running on https://api-books-ashy.vercel.app`);
-});
+module.exports = app;
