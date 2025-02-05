@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Books</title>
+</head>
+<body>
+  <h1>Liste des livres</h1>
+  <ul id="books-list"></ul>
+
+  <script>
+    fetch('https://api-books-cnt8pdqwx-coatanoans-projects.vercel.app/books')
+      .then(response => response.json())
+      .then(books => {
+        const booksList = document.getElementById('books-list');
+        books.forEach(book => {
+          const li = document.createElement('li');
+          li.textContent = book.title;
+          booksList.appendChild(li);
+        });
+      })
+      .catch(error => console.error('Erreur:', error));
+  </script>
+</body>
+</html>
