@@ -1,17 +1,6 @@
-const path = require('path');
-const cors = require('cors');
 const express = require('express');
 const app = express();
 
-// Middleware pour ajouter les en-têtes CORS manuellement
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Autorise toutes les origines
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Cache-Control', 'no-store');
-  next();
-});
 
 
 // Données des livres (votre JSON ici)
