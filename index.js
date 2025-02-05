@@ -4,8 +4,13 @@ const app = express();
 
 // Configuration CORS
 const corsOptions = {
-  origin: function(origin, callback) {
-    const allowedOrigins = ['http://localhost:5173', 'https://localhost:5173', 'https://front-books-azure.vercel.app'];
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:5173', // Local dev
+      'https://localhost:5173', // Local dev en HTTPS
+      'https://front-books-azure.vercel.app', // Ton domaine de production sur Vercel
+      process.env.VERCEL_URL // Ajoute ceci pour tenir compte de l'URL dynamique de Vercel
+    ];
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
@@ -14,8 +19,9 @@ const corsOptions = {
   },
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Content-Type, Authorization',
-  credentials: true,  // Important pour les cookies et les credentials
+  credentials: true,
 };
+
 
 // Appliquer CORS avec les options
 app.use(cors(corsOptions));
