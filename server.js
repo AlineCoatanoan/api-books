@@ -112,9 +112,15 @@ const books = [
 
 
 // Route principale pour récupérer la liste des livres
-app.get('/', (req, res) => {
+app.get('/books', (req, res) => {
   res.json(books);
 });
 
+
 // Démarrer le serveur
 module.exports = app;
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
