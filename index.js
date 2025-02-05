@@ -5,16 +5,18 @@ const app = express();
 
 // Middleware pour ajouter les en-têtes CORS manuellement
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://front-books-aline.vercel.app'); // Remplace par l'URL de ton frontend
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Méthodes autorisées
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // En-têtes autorisés
-  res.setHeader('Access-Control-Allow-Credentials', 'true'); // Pour les cookies ou les sessions
-  res.setHeader('Cache-Control', 'no-store'); // Désactiver le cache
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Autorise toutes les origines
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Cache-Control', 'no-store');
   next();
 });
 
+
 // Servir les fichiers statiques (images)
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 
@@ -114,7 +116,7 @@ const books = [
 
 
 // Route principale pour récupérer la liste des livres
-app.get('/books', (req, res) => {
+app.get('/', (req, res) => {
   res.json(books);
 });
 
