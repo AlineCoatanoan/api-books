@@ -26,7 +26,7 @@ const books = [
     "id": 12345,
     "title": "Le Maître et Marguerite",
     "slug": "le-maitre-et-marguerite",
-    "thumbnail": "/images/maitre.jpg",
+    "thumbnail": "/public/images/maitre.jpg",
     "author": "Mikhaïl Boulgakov",
     "difficulty": "Difficile",
     "description": "Un roman qui mélange fantastique, réalisme et satire. L'histoire explore la présence du Diable dans la Moscou stalinienne, où des événements surnaturels bouleversent la ville. Le Maître et Marguerite, deux personnages principaux, symbolisent l'amour, la rédemption et la lutte contre le totalitarisme.",
