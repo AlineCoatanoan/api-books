@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = process.env.PORT || 3000;
 import cors from 'cors';
 
 const corsOptions = {
-  origin: 'https://front-books-azure.vercel.app', // L'URL de ton front
+  origin: ['https://front-books-azure.vercel.app',
+    'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Méthodes autorisées
   credentials: true,  // Si tu veux que les cookies ou les headers d'authentification soient envoyés
 };
@@ -109,6 +110,18 @@ const books = [
 // Route pour obtenir tous les livres
 app.get('/', (req, res) => {
   res.json(books);
+});
+
+// Route pour obtenir tous les genres uniques
+app.get('/genres', (req, res) => {
+  // Créer un ensemble de genres uniques
+  const genres = new Set();
+  books.forEach((book) => {
+    book.genres.forEach((genre) => {
+      genres.add(genre);
+    });
+  });
+  res.json([...genres]); // Retourner les genres uniques
 });
 
 // Démarre le serveur
