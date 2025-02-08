@@ -113,7 +113,7 @@ app.get('/', (req, res) => {
 });
 
 // Route pour obtenir tous les genres uniques
-app.get('/genres', (req, res) => {
+app.get('/books', (req, res) => {
   const genres = [...new Set(books.flatMap(book => book.genres))];
   res.json(genres);
 });
