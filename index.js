@@ -114,15 +114,10 @@ app.get('/', (req, res) => {
 
 // Route pour obtenir tous les genres uniques
 app.get('/genres', (req, res) => {
-  // Créer un ensemble de genres uniques
-  const genres = new Set();
-  books.forEach((book) => {
-    book.genres.forEach((genre) => {
-      genres.add(genre);
-    });
-  });
-  res.json([...genres]); // Retourner les genres uniques
+  const genres = [...new Set(books.flatMap(book => book.genres))];
+  res.json(genres);
 });
+
 
 // Démarre le serveur
 app.listen(port, () => {
